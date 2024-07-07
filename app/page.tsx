@@ -220,7 +220,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="py-8 flex space-x-24 px-5  lg:justify-between lg:items-center">
+      <div className="py-8 flex space-x-10 sm:space-x-24 md:space-x-48 px-5  lg:justify-between lg:items-center">
         <div className="lg:hidden">
           <HiBars3 className="size-9" />
         </div>
@@ -287,23 +287,35 @@ export default function Home() {
               <motion.div className="absolute top-1/4 text-center text-white right-0 left-0">
                 <motion.h2
                   initial={{ y: 20 }}
-                  whileInView={{ y: 0 }}
-                  transition={{ duration: 0.5 }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                  }}
                   className="text-3xl font-semibold"
                 >
                   AUTHORIZED
                 </motion.h2>
                 <motion.p
                   initial={{ y: 24 }}
-                  whileInView={{ y: 0 }}
-                  transition={{ duration: 0.8 }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                  }}
                 >
                   DISTRIBUTOR
                 </motion.p>
                 <motion.div
                   initial={{ y: 34 }}
-                  whileInView={{ y: 0 }}
-                  transition={{ duration: 1 }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                  }}
                 >
                   <Image
                     src={dis1}
@@ -329,7 +341,11 @@ export default function Home() {
                 <motion.h2
                   initial={{ y: 70 }}
                   animate={{ y: 0 }}
-                  transition={{ duration: 1 }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                  }}
                   className="text-3xl font-semibold"
                 >
                   Keep Flying
@@ -447,7 +463,7 @@ export default function Home() {
               width={800}
               height={900}
               alt="bg_img"
-              className="opacity-35 h-[420px] w-[92%] mx-auto"
+              className="opacity-35 h-[520px] w-[92%] mx-auto"
             />
             <div className="absolute top-0 right-0 left-0 text-center w-5/6 mx-auto">
               <h2 className="text-4xl font-semibold mt-10">
