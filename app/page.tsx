@@ -4,7 +4,14 @@ import Logo from "@/public/logo.png";
 import Aviation from "@/public/aviation.jpg";
 import Aerospace from "@/public/aerospace.jpg";
 import Training from "@/public/training.jpg";
-import { HiBars3, HiOutlineChevronDoubleRight, HiPhone } from "react-icons/hi2";
+import {
+  HiBars3,
+  HiChevronDown,
+  HiChevronUp,
+  HiOutlineChevronDoubleRight,
+  HiPhone,
+  HiXMark,
+} from "react-icons/hi2";
 import { HiMail } from "react-icons/hi";
 import { motion } from "framer-motion";
 import dis1 from "@/public/dis-1.jpg";
@@ -22,8 +29,11 @@ import { FaFacebook, FaLinkedin, FaLocationArrow } from "react-icons/fa";
 import { FaLocationPin } from "react-icons/fa6";
 import { BiMessage } from "react-icons/bi";
 import { SiGmail } from "react-icons/si";
+import { useState } from "react";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isProduct, setIsProduct] = useState(false);
   var settings = {
     dots: false,
     infinite: true,
@@ -220,11 +230,24 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="py-8 flex space-x-10 sm:space-x-24 md:space-x-48 px-5  lg:justify-between lg:items-center">
+      <div className="py-8 flex space-x-10 sm:space-x-24 md:space-x-48 lg:space-x-0 px-5  lg:justify-between lg:items-center">
         <div className="lg:hidden">
-          <HiBars3 className="size-9" />
+          <motion.div
+            whileTap={{ rotate: 90 }}
+            onClick={() => setIsOpen(true)}
+            className={isOpen ? "hidden" : "lg:hidden cursor-pointer"}
+          >
+            <HiBars3 className="size-9" />
+          </motion.div>
+          <motion.div
+            whileTap={{ rotate: 90 }}
+            onClick={() => setIsOpen(false)}
+            className={!isOpen ? "hidden" : "lg:hidden cursor-pointer"}
+          >
+            <HiXMark className="size-9" />
+          </motion.div>
         </div>
-        <div className="">
+        <div>
           <Image
             src={Logo}
             width={400}
@@ -233,19 +256,67 @@ export default function Home() {
             className="w-44"
           />
         </div>
-        <div className="lg:flex hidden">
-          <ul className="flex text-xs space-x-7">
-            <li className="hover:text-red-600">HOME</li>
-            <li className="hover:text-red-600">ABOUT </li>
-            <li className="hover:text-red-600">PRODUCT & SERVICES</li>
-            <li className="hover:text-red-600">CERTIFICATIONS</li>
-            <li className="hover:text-red-600">DISTRIBUTORSHIP</li>
-            <li className="hover:text-red-600">GALLERY</li>
+        <div
+          className={
+            !isOpen
+              ? "hidden lg:flex lg:-pl-40"
+              : "lg:flex lg:-pl-40 lg:static lg:bg-none lg:border-none left-0 lg:mt-0 mt-10 md:-left-32 md:w-1/3 w-5/6 fixed bg-white border-t-4 border-t-red-600 py-3 px-2 z-50"
+          }
+        >
+          <ul className="flex flex-col space-y-3 lg:flex-row text-xs lg:space-x-7  ">
+            <li className="hover:text-red-600 cursor-pointer border-b border-b-black py-3 lg:border-none ">
+              HOME
+            </li>
+            <li className="hover:text-red-600 cursor-pointer border-b border-b-black pb-3 lg:border-none lg:pb-0">
+              ABOUT{" "}
+            </li>
+            <li
+              onClick={() => setIsProduct((open) => !open)}
+              className="hover:text-red-600 cursor-pointer border-b border-b-black pb-3 flex justify-between items-center  lg:border-none "
+            >
+              <span>PRODUCT & SERVICES</span>
+              {!isProduct ? (
+                <HiChevronDown className="size-5" />
+              ) : (
+                <HiChevronUp className="size-5" />
+              )}
+            </li>
+            <div
+              className={
+                isProduct
+                  ? "lg:fixed lg:bg-white lg:px-2 lg:py-3 lg:top-24 lg:left-[45%] lg:border-t-4 lg:border-t-red-600 lg:z-50 flex flex-col space-y-3 px-5"
+                  : "hidden"
+              }
+            >
+              <p className="border-b border-b-slate-200 py-3">Aviation</p>
+              <p className="border-b border-b-slate-200 pb-3">
+                Aerospace & Defence
+              </p>
+              <p className="border-b border-b-slate-200 pb-3">MRO</p>
+              <p className="border-b border-b-slate-200 pb-3">Tentacell</p>
+              <p className="border-b border-b-slate-200 pb-3">
+                Aviation Training
+              </p>
+              <p className="border-b border-b-slate-200 pb-3 lg:border-none">
+                Online Product Catalogue
+              </p>
+            </div>
+            <li className="hover:text-red-600 cursor-pointer border-b border-b-black pb-3 lg:border-none lg:pb-0">
+              CERTIFICATIONS
+            </li>
+            <li className="hover:text-red-600 cursor-pointer border-b border-b-black pb-3 lg:border-none lg:pb-0">
+              DISTRIBUTORSHIP
+            </li>
+            <li className="hover:text-red-600 cursor-pointer lg:border-none lg:pb-0">
+              GALLERY
+            </li>
           </ul>
         </div>
-        <button className="text-xs py-2 border hidden lg:flex border-purple-600 px-2">
-          CONTACT
-        </button>
+        <div>
+          <button className="text-xs py-2 border hidden lg:flex border-purple-600 px-2">
+            CONTACT
+          </button>
+        </div>
       </div>
       <div className="hidden bg-purple-950 text-center text-white lg:block">
         <div
